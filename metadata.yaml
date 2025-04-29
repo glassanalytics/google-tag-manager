@@ -1,0 +1,5 @@
+homepage: "https://www.example.com"
+documentation: "https://github.com/glassanalytics/google-tag-manager/invitations"
+versions:
+  - sha: 98045n355439435
+    changeNotes: Initial release.
