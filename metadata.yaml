@@ -1,13 +1,13 @@
-homepage: "https://www.example.com"
+homepage: "https://glassanalytics.com"
 documentation: "https://github.com/glassanalytics/google-tag-manager/invitations"
-icon_url: "assets/logo.png"  # Path to your logo (usually 128x128)
+icon_url: "assets/telescope-icon.svg"
 name: "Glass Analytics"
 description: "Injects the Glass Analytics script for tracking site performance."
 type: "tag"
 template_version: "1.0.0"
 author:
-  name: "Your Name or Company"
-  url: "https://yourdomain.com"
+  name: "Glass Analytics"
+  url: "https://glassanalytics.com"
 
 versions:
   - sha: 7bf1e6a5ec558580d318800ff75e0cb6232f0ee9

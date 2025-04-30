@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with gradient -->
+  <rect width="240" height="240" rx="32" fill="url(#gradient)" />
+  
+  <!-- Decorative lights -->
+  <circle cx="200" cy="40" r="8" fill="white" fill-opacity="0.6" />
+  <circle cx="40" cy="180" r="4" fill="white" fill-opacity="0.8" />
+  <circle cx="60" cy="100" r="4" fill="white" fill-opacity="0.5" />
+  
+  <!-- Telescope Icon -->
+  <g transform="translate(70, 70) scale(4.2)">
+    <path d="M11 12L16 22M13 12L8 22" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+    <path
+      d="M21.4 5.2L20.2 3.4C19.8 2.6 19.5 2.2 19.1 2.1C18.7 2 18.3 2.2 17.4 2.6L13.7 4.7C12.9 5.2 12.5 5.4 12.4 5.8C12.3 6.3 12.5 6.7 13 7.5L14.1 9.4C14.6 10.2 14.8 10.6 15.2 10.7C15.6 10.8 16 10.6 16.8 10.1L20.6 8C21.4 7.5 21.9 7.3 22 6.9C22.1 6.4 21.8 6 21.4 5.2Z"
+      fill="white"
+    />
+    <path
+      d="M13.8 6.18L8.56 8.27C7.73 8.75 7.31 8.98 7.2 9.39C7.1 9.79 7.34 10.2 7.82 11.03L8.42 12.04C8.89 12.84 9.12 13.24 9.52 13.35C9.92 13.46 10.32 13.23 11.13 12.77L14.86 10.65"
+      fill="#a3c9ff"
+    />
+  </g>
+  
+  <!-- Gradient Definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="240" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3B82F6" />
+      <stop offset="1" stop-color="#1E40AF" />
+    </linearGradient>
+  </defs>
+</svg>
