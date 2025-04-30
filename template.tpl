@@ -46,43 +46,48 @@ ___TEMPLATE_PARAMETERS___
 
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
+// Require necessary GTM modules
 const injectScript = require('injectScript');
 const queryPermission = require('queryPermission');
 const log = require('logToConsole');
 
-const main = (data) => {
+// Main function
+const main = () => {
+  // Validate input
   if (!data.siteId) {
-    log('Error: Site ID required');
+    log('Error: Site ID is required');
     data.gtmOnFailure();
     return;
   }
 
-  const url = 'https://cdn.glassanalytics.com/analytics.min.js';
-  const options = {
-    id: 'glass-analytics-script',
-    attributes: {
-      'defer': true,
-      'data-site': data.siteId
-    }
-  };
+  // Construct the URL with dynamic query parameter
+const url = 'https://cdn.glassanalytics.com/analytics.min.js?data-site=' + data.siteId;
+  const scriptId = 'data-siteId-' + data.siteId;
 
+  log('Injecting Glass Analytics with siteId:', data.siteId);
+  log('Injecting Glass Analytics with siteId:',scriptId);
+  // Check permissions
   if (!queryPermission('inject_script', url)) {
     log('Permission denied for script injection');
     data.gtmOnFailure();
     return;
   }
-  
- //log('success: Site data:', options);
-  
   injectScript(
     url,
-    () => data.gtmOnSuccess(),
-    (err) => data.gtmOnFailure(),
-    options 
+    () => {
+      log('Glass Analytics loaded successfully');
+      data.gtmOnSuccess();
+    },
+    (err) => {
+      log('Failed to load Glass Analytics:', err);
+      data.gtmOnFailure();
+    },
+    scriptId
   );
 };
 
-main(data);
+// Execute main
+main();
 
 ___WEB_PERMISSIONS___
 
