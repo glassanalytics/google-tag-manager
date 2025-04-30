@@ -61,17 +61,17 @@ const main = () => {
   }
 
   // Construct the URL with dynamic query parameter
-const url = 'https://cdn.glassanalytics.com/analytics.min.js?data-site=' + data.siteId;
+  const url = 'https://cdn.glassanalytics.com/analytics.min.js?data-site=' + data.siteId;
   const scriptId = 'data-siteId-' + data.siteId;
 
-  log('Injecting Glass Analytics with siteId:', data.siteId);
-  log('Injecting Glass Analytics with siteId:',scriptId);
+  log('Injecting Glass Analytics with scriptId:',scriptId);
   // Check permissions
   if (!queryPermission('inject_script', url)) {
     log('Permission denied for script injection');
     data.gtmOnFailure();
     return;
   }
+
   injectScript(
     url,
     () => {
@@ -124,22 +124,6 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "https://cdn.glassanalytics.com/*"
-              }
-            ]
-          }
-        },
-        {
-          "key": "attributes",
-          "value": {
-            "type": 2,
-            "listItem": [
-              {
-                "type": 1,
-                "string": "defer"
-              },
-              {
-                "type": 1,
-                "string": "data-site"
               }
             ]
           }
