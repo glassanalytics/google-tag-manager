@@ -14,7 +14,6 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "Glass Analytics",
-    "categories": ["ANALYTICS"],
   "brand": {
     "id": "brand_dummy",
     "displayName": "",
@@ -46,48 +45,52 @@ ___TEMPLATE_PARAMETERS___
 
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
-// Require necessary GTM modules
+// Glass Analytics Implementation Template
+const log = require('logToConsole');
 const injectScript = require('injectScript');
 const queryPermission = require('queryPermission');
-const log = require('logToConsole');
+const setInWindow = require('setInWindow');
+const copyFromWindow = require('copyFromWindow');
 
-// Main function
-const main = () => {
-  // Validate input
-  if (!data.siteId) {
-    log('Error: Site ID is required');
+// Define the script URL
+const scriptUrl = 'https://cdn.glassanalytics.com/analytics.min.js';
+
+// Check permission to set data-site (as shown in your permissions)
+if (queryPermission('access_globals', 'readwrite', '__glass_analytics_data-site')) {
+  // Set the data-site as a global variable
+  setInWindow('__glass_analytics_data-site', data.siteId, true);
+  log('Set data-site to: ' + data.siteId);
+  
+  if (queryPermission('inject_script', scriptUrl)) {
+  // Check permission to inject script
+    // Inject the Glass Analytics script
+    injectScript(scriptUrl, onSuccess, onFailure, 'glassAnalytics');
+  } else {
+    log('Error: No permission to inject Glass Analytics script');
     data.gtmOnFailure();
-    return;
   }
+} else {
+  log('Error: No permission to set data-site global variable');
+  data.gtmOnFailure();
+}
 
-  // Construct the URL with dynamic query parameter
-  const url = 'https://cdn.glassanalytics.com/analytics.min.js?data-site=' + data.siteId;
-  const scriptId = 'data-siteId-' + data.siteId;
-
-  log('Injecting Glass Analytics with scriptId:',scriptId);
-  // Check permissions
-  if (!queryPermission('inject_script', url)) {
-    log('Permission denied for script injection');
-    data.gtmOnFailure();
-    return;
+function onSuccess() {
+  log('Glass Analytics: Script loaded successfully');
+  
+  // Verify the variable was set correctly
+  if (queryPermission('access_globals', 'read', '__glass_analytics_data-site')) {
+    const currentSiteId = copyFromWindow('__glass_analytics_data-site');
+    log('Current data-site after script load: ' + currentSiteId);
   }
+  
+  data.gtmOnSuccess();
+}
 
-  injectScript(
-    url,
-    () => {
-      log('Glass Analytics loaded successfully');
-      data.gtmOnSuccess();
-    },
-    (err) => {
-      log('Failed to load Glass Analytics:', err);
-      data.gtmOnFailure();
-    },
-    scriptId
-  );
-};
+function onFailure() {
+  log('Glass Analytics: Script load failed');
+  data.gtmOnFailure();
+}
 
-// Execute main
-main();
 
 ___WEB_PERMISSIONS___
 
@@ -103,11 +106,15 @@ ___WEB_PERMISSIONS___
           "key": "environments",
           "value": {
             "type": 1,
-            "string": "all"
+            "string": "debug"
           }
         }
       ]
-    }
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
   },
   {
     "instance": {
@@ -123,13 +130,78 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://cdn.glassanalytics.com/*"
+                "string": "https://cdn.glassanalytics.com/analytics.min.js"
               }
             ]
           }
         }
       ]
-    }
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "access_globals",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "keys",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "__glass_analytics_data-site"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
   }
 ]
 
@@ -141,6 +213,5 @@ scenarios: []
 
 ___NOTES___
 
-
-Created on 4/29/2025, 3:47:47 PM
+Created on 5/9/2025, 3:11:11 PM
 
