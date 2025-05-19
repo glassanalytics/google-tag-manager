@@ -1,5 +1,5 @@
 homepage: "https://glassanalytics.com"
-documentation: "https://github.com/glassanalytics/google-tag-manager/invitations"
+documentation: "https://docs.google.com/document/d/1MJh0DJxXpgrV1OzgPnILc9u-8nGp89MhUqxruSPkyJ4"
 icon_url: "assets/telescope-icon.svg"
 name: "Glass Analytics"
 description: "Injects the Glass Analytics script for tracking site performance."
@@ -10,5 +10,5 @@ author:
   url: "https://glassanalytics.com"
 
 versions:
-  - sha: 7bf1e6a5ec558580d318800ff75e0cb6232f0ee9
+  - sha: c6c7b0bb8d5869b21b0ac2b2a4bf5156182a606d
     changeNotes: Initial release.
