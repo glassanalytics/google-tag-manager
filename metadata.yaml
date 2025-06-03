@@ -1,13 +1,13 @@
-homepage: "https://glassanalytics.com"
+homepage: "https://userbird.com"
 documentation: "https://docs.google.com/document/d/1MJh0DJxXpgrV1OzgPnILc9u-8nGp89MhUqxruSPkyJ4"
-icon_url: "assets/telescope-icon.svg"
-name: "Glass Analytics"
-description: "Injects the Glass Analytics script for tracking site performance."
+icon_url: "assets/userbird_final3.svg"
+name: "Userbird Analytics"
+description: "Injects the Userbird Analytics script for tracking site performance."
 type: "tag"
 template_version: "1.0.0"
 author:
-  name: "Glass Analytics"
-  url: "https://glassanalytics.com"
+  name: "Userbird Analytics"
+  url: "https://userbird.com"
 
 versions:
   - sha: c6c7b0bb8d5869b21b0ac2b2a4bf5156182a606d
