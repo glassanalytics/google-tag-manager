@@ -1,2 +1,2 @@
 # google-tag-manager
-Official Google Tag Manager Template for Glass Analytics https://glassanalytics.com
+Official Google Tag Manager Template for Userbird Analytics https://userbird.com
