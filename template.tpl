@@ -1,4 +1,4 @@
-﻿___TERMS_OF_SERVICE___
+﻿﻿___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -53,12 +53,12 @@ const setInWindow = require('setInWindow');
 const copyFromWindow = require('copyFromWindow');
 
 // Define the script URL
-const scriptUrl = 'https://cdn.glassanalytics.com/analytics.min.js';
+const scriptUrl = 'https://cdn.userbird.com/analytics.min.js';
 
 // Check permission to set data-site (as shown in your permissions)
-if (queryPermission('access_globals', 'readwrite', '__glass_analytics_data-site')) {
+if (queryPermission('access_globals', 'readwrite', '__userbirdConfig_siteId')) {
   // Set the data-site as a global variable
-  setInWindow('__glass_analytics_data-site', data.siteId, true);
+  setInWindow('__userbirdConfig_siteId', data.siteId, true);
   log('Set data-site to: ' + data.siteId);
   
   if (queryPermission('inject_script', scriptUrl)) {
@@ -78,8 +78,8 @@ function onSuccess() {
   log('Glass Analytics: Script loaded successfully');
   
   // Verify the variable was set correctly
-  if (queryPermission('access_globals', 'read', '__glass_analytics_data-site')) {
-    const currentSiteId = copyFromWindow('__glass_analytics_data-site');
+  if (queryPermission('access_globals', 'read', '__userbirdConfig_siteId')) {
+    const currentSiteId = copyFromWindow('__userbirdConfig_siteId');
     log('Current data-site after script load: ' + currentSiteId);
   }
   
@@ -130,7 +130,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://cdn.glassanalytics.com/analytics.min.js"
+                "string": "https://8f3d-39-60-227-194.ngrok-free.app/"
               }
             ]
           }
@@ -177,7 +177,7 @@ ___WEB_PERMISSIONS___
                 "mapValue": [
                   {
                     "type": 1,
-                    "string": "__glass_analytics_data-site"
+                    "string": "__userbirdConfig_siteId"
                   },
                   {
                     "type": 8,
@@ -213,5 +213,5 @@ scenarios: []
 
 ___NOTES___
 
-Created on 6/3/2025, 12:33:54 PM
+Created on 6/6/2025, 5:28:18 PM
 
