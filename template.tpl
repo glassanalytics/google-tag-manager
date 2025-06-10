@@ -130,7 +130,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://8f3d-39-60-227-194.ngrok-free.app/"
+                "string": "https://cdn.userbird.com/analytics.min.js"
               }
             ]
           }
@@ -213,5 +213,5 @@ scenarios: []
 
 ___NOTES___
 
-Created on 6/6/2025, 5:28:18 PM
+Created on 6/10/2025, 1:35:09 PM
 
